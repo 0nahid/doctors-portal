@@ -1,7 +1,7 @@
 import treatment from '../../../assets/images/treatment.png'
 export default function ServiceHero() {
     return (
-        <div class="hero min-h-screen ">
+        <div class="hero md:min-h-screen">
             <div class="hero-content flex-col lg:flex-row">
                 <img src={treatment} class="max-w-sm rounded-lg shadow-2xl" alt="" />
                 <div>

@@ -29,7 +29,7 @@ export default function Services() {
             <div className="text-center ">
                 <h3 class="text-primary uppercase font-bold text-2xl">our service</h3>
                 <h2 class="text-3xl mb-5">Services We Provide</h2>
-                <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-28 lg:gap-52 justify-items-center">
+                <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
                     {
                         services.map(service => <Service key={service._id} service={service} />)
                     }
