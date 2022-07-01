@@ -1,7 +1,7 @@
 import chair from '../../assets/images/chair.png'
 export default function Banner() {
     return (
-        <div class="hero md:min-h-screen px-12 mx-auto">
+        <div class="hero md:min-h-screen mx-auto">
             <div class="hero-content flex-col lg:flex-row-reverse">
                 <img src={chair} class="max-w-sm rounded-lg shadow-2xl " alt="banner" />
                 <div>
