@@ -1,5 +1,5 @@
-import appointment from '../../assets/images/appointment.png'
-import doctor from '../../assets/images/doctor.png'
+import appointment from '../../../assets/images/appointment.png'
+import doctor from '../../../assets/images/doctor.png'
 export default function MakeAppointment() {
     return (
         <section style={{

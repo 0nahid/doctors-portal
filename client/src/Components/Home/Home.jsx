@@ -1,8 +1,8 @@
-
-import MakeAppointment from "../MakeAppointment/MakeAppointment";
 import Banner from "./Banner";
 import Info from "./Info/Info";
+import MakeAppointment from "./MakeAppointment/MakeAppointment";
 import Services from "./Services/Services";
+import Testimonial from "./Testimonial/Testimonial";
 
 
 export default function Home() {
@@ -12,6 +12,7 @@ export default function Home() {
             <Info />
             <Services />
             <MakeAppointment />
+            <Testimonial />
         </div>
     )
 }
