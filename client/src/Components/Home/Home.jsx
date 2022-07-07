@@ -1,3 +1,4 @@
+import Footer from "../Shared/Footer/Footer";
 import Banner from "./Banner";
 import Info from "./Info/Info";
 import MakeAppointment from "./MakeAppointment/MakeAppointment";
@@ -13,6 +14,7 @@ export default function Home() {
             <Services />
             <MakeAppointment />
             <Testimonial />
+            <Footer />
         </div>
     )
 }
