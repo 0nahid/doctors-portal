@@ -5,7 +5,7 @@ import Navbar from './Components/Shared/Navbar/Navbar'
 
 export default function App() {
   return (
-    <div>
+    <div class="max-w-7xl mx-auto">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -3,7 +3,7 @@ export default function Service({ service }) {
     const { name, review, img } = service;
     // console.log(name);
     return (
-        <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card w-full bg-base-100 shadow-2xl">
             <figure class="px-10 pt-10">
                 <img src={img} alt={name} class="rounded-xl" />
             </figure>

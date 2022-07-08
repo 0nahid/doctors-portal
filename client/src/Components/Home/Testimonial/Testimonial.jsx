@@ -39,7 +39,7 @@ export default function Testimonial() {
                     <img src={quote} className="w-24 lg:w-48" alt="quote" />
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
                 {reviews.map(reviews => <Review id={reviews._id} reviews={reviews} />)}
             </div>
         </section>
