@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import Appointment from './Components/Appointment/Appointment'
 import Login from './Components/Authentication/Login'
 import Home from './Components/Home/Home'
 import Navbar from './Components/Shared/Navbar/Navbar'
@@ -9,6 +10,7 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/appointment" element={<Appointment />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>
