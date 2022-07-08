@@ -1,11 +1,11 @@
 
 export default function Service({ service, setTreatment }) {
     const { _id, name, slots } = service;
-    console.log(_id, name);
+    // console.log(_id, name);
     return (
         <div class="card w-96 bg-base-100 shadow-2xl text-center">
             <div class="card-body ">
-                <h2 class="text-2xl font-bold">{name}</h2>
+                <h2 class="text-2xl font-bold text-accent">{name}</h2>
                 <p>
                     {
                         slots.length > 0 ?

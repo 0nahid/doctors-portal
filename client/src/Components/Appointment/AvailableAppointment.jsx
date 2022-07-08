@@ -20,7 +20,7 @@ export default function AvailableAppointment({ date }) {
                 {services.map(service => <Service key={service._id} service={service} setTreatment={setTreatment} />)}
             </div>
             {
-                treatment && <BookingModal treatment={treatment} date={date} />
+                treatment && <BookingModal treatment={treatment} date={date} setTreatment={setTreatment} />
             }
         </div>
     )
