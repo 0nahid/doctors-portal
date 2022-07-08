@@ -40,7 +40,7 @@ export default function Footer() {
                 </div>
             </footer>
             <h1 className="text-center">
-                This site is designed by <span><a target="_blank" rel="noreferrer"  href="http://github.com/0nahid">Nahid</a></span>
+               All rights reserved by  <span><a target="_blank" rel="noreferrer"  href="http://github.com/0nahid">Aesthetic</a></span>
             </h1>
         </div>
     )
