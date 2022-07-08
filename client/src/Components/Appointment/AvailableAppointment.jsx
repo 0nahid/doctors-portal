@@ -8,7 +8,7 @@ export default function AvailableAppointment({ date }) {
     const [treatment, setTreatment] = useState(null)
 
     useEffect(() => {
-        axios(`services.json`)
+        axios(`http://localhost:5500/api/services`)
             .then(res => {
                 setServices(res.data)
             })

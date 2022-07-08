@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import Appointment from './Components/Appointment/Appointment'
 import Login from './Components/Authentication/Login'
@@ -13,6 +14,8 @@ export default function App() {
         <Route path="/appointment" element={<Appointment />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Toaster />
+
     </div>
   )
 }

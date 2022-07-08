@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { format } from 'date-fns';
 import React from 'react';
+import toast from 'react-hot-toast';
 
-export default function BookingModal({ treatment, date , setTreatment }) {
+export default function BookingModal({ treatment, date, setTreatment }) {
     // console.log(treatment);
     const { _id, name, slots } = treatment;
     const handleBooking = e => {
@@ -10,7 +12,7 @@ export default function BookingModal({ treatment, date , setTreatment }) {
         const name = e.target.name.value;
         const email = e.target.email.value;
         const phone = e.target.phone.value;
-        const data = {  
+        const data = {
             name,
             email,
             phone,
@@ -19,7 +21,14 @@ export default function BookingModal({ treatment, date , setTreatment }) {
             treatment: _id
         }
         console.log(data);
-        setTreatment(null);
+        axios.post('http://localhost:5500/api/bookings', data)
+            .then(res => {
+                // console.log(res);
+                if (res.status === 200) {
+                    setTreatment(null);
+                    toast.success('Appointment booked successfully');
+                }
+            })
     }
 
     return (
@@ -34,7 +43,7 @@ export default function BookingModal({ treatment, date , setTreatment }) {
                     >
                         <input type="text" disabled value={format(date, 'PP')} class="input input-bordered input-secondary w-full max-w-xs" />
                         <select name="slot" class="select select-secondary w-full max-w-xs">
-                            {slots.map(slot => <option  key={slot} value={slot}>{slot}</option>)}
+                            {slots.map(slot => <option key={slot} value={slot}>{slot}</option>)}
                         </select>
                         <input required type="text" name="name" placeholder="Your name" class="input input-bordered input-secondary w-full max-w-xs" />
                         <input required type="email" name="email" placeholder="Your email" class="input input-bordered input-secondary w-full max-w-xs" />
