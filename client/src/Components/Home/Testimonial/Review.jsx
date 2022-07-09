@@ -1,7 +1,7 @@
 
 export default function Review({ reviews }) {
     const { name, designation, review, img } = reviews;
-    console.log(name);
+    // console.log(name);
     return (
         <div class="card w-lg bg-base-100 shadow-2xl">
             <figure class="px-10 pt-10 ">
