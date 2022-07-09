@@ -9,7 +9,7 @@ import Testimonial from "./Testimonial/Testimonial";
 
 export default function Home() {
     return (
-        <div class="px-12">
+        <div className="px-12">
             <Banner />
             <Info />
             <Services />

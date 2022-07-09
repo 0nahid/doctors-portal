@@ -23,12 +23,12 @@ export default function SignUp() {
 
     let signUpError;
     if (gError || cError || uError) {
-        signUpError = <p class="text-error">{gError?.message || cError?.message || uError?.message}</p>
+        signUpError = <p className="text-error">{gError?.message || cError?.message || uError?.message}</p>
     }
-    const onSubmit = async(data) => {
+    const onSubmit = async (data) => {
         console.log(data)
         await createUserWithEmailAndPassword(data.mail, data.password)
-        await updateProfile({displayName: data.displayName})
+        await updateProfile({ displayName: data.displayName })
         navigate('/ ')
     };
     if (gUser || cUser) {
@@ -39,17 +39,17 @@ export default function SignUp() {
     }
     return (
         <div className="flex justify-center items-center h-screen">
-            <div class="card w-96 bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h2 class="text-center text-2xl font-bold">Sign up</h2>
-                    <div class="flex flex-col w-full border-opacity-50">
-                        <div class="grid place-items-center">
+            <div className="card w-96 bg-base-100 shadow-xl">
+                <div className="card-body">
+                    <h2 className="text-center text-2xl font-bold">Sign up</h2>
+                    <div className="flex flex-col w-full border-opacity-50">
+                        <div className="grid place-items-center">
                             <form onSubmit={handleSubmit(onSubmit)}>
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Name</span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Name</span>
                                     </label>
-                                    <input type="text" class="input input-bordered w-full max-w-xs"{...register("displayName",
+                                    <input type="text" className="input input-bordered w-full max-w-xs"{...register("displayName",
                                         {
                                             required: {
                                                 value: true,
@@ -60,16 +60,16 @@ export default function SignUp() {
                                                 message: 'Name is not valid',
                                             }
                                         })} />
-                                    <label class="label">
-                                        <span class="label-text-alt"> <p class="text-error">{errors.name?.message}</p></span>
+                                    <label className="label">
+                                        <span className="label-text-alt"> <p className="text-error">{errors.name?.message}</p></span>
                                     </label>
                                 </div>
 
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Email</span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Email</span>
                                     </label>
-                                    <input type="email" class="input input-bordered w-full max-w-xs"{...register("mail",
+                                    <input type="email" className="input input-bordered w-full max-w-xs"{...register("mail",
                                         {
                                             required: {
                                                 value: true,
@@ -82,15 +82,15 @@ export default function SignUp() {
                                                 ,
                                             }
                                         })} />
-                                    <label class="label">
-                                        <span class="label-text-alt"> <p class="text-error">{errors.mail?.message}</p></span>
+                                    <label className="label">
+                                        <span className="label-text-alt"> <p className="text-error">{errors.mail?.message}</p></span>
                                     </label>
                                 </div>
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Password</span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Password</span>
                                     </label>
-                                    <input type="password" class="input input-bordered w-full max-w-xs"{...register("password", {
+                                    <input type="password" className="input input-bordered w-full max-w-xs"{...register("password", {
                                         required: {
                                             value: true,
                                             message: "Password is required"
@@ -101,22 +101,22 @@ export default function SignUp() {
                                         }
                                     })} />
 
-                                    <label class="label">
-                                        <span class="label-text-alt"> <p class="text-error">{errors.password?.message}</p></span>
+                                    <label className="label">
+                                        <span className="label-text-alt"> <p className="text-error">{errors.password?.message}</p></span>
                                     </label>
                                 </div>
                                 {signUpError}
-                                <div class="text-center">
-                                    <button class="btn btn-primary" type="submit">Register</button>
+                                <div className="text-center">
+                                    <button className="btn btn-primary" type="submit">Register</button>
                                 </div>
                             </form>
-                            <p class="text-sm mt-2">Already have an account? <Link class="text-primary" to="/login">Login here!!!</Link> </p>
+                            <p className="text-sm mt-2">Already have an account? <Link className="text-primary" to="/login">Login here!!!</Link> </p>
                         </div>
-                        <div class="divider">OR</div>
-                        <div class="grid place-items-center justify-items-center">
-                            <button class="btn btn-secondary text-white font-bold"
+                        <div className="divider">OR</div>
+                        <div className="grid place-items-center justify-items-center">
+                            <button className="btn btn-secondary text-white font-bold"
                                 onClick={() => signInWithGoogle()}
-                            ><FcGoogle class="w-6 h-6 mr-1" />Continue with Google</button>
+                            ><FcGoogle className="w-6 h-6 mr-1" />Continue with Google</button>
                         </div>
                     </div>
                 </div>

@@ -5,11 +5,11 @@ import chair from '../../assets/images/chair.png';
 export default function AppointmentBanner({ date, setDate }) {
 
     return (
-        <div class="grid grid-cols-1 justify-items-center md:flex md:justify-around md:items-center " style={{
+        <div className="grid grid-cols-1 justify-items-center md:flex md:justify-around md:items-center " style={{
             backgroundImage: `url(${bg})`,
             backgroundSize: 'cover',
         }} >
-            <div class="shadow-2xl p-2 rounded-xl mb-5">
+            <div className="shadow-2xl p-2 rounded-xl mb-5">
                 <DayPicker
                     mode="single"
                     selected={date}
@@ -17,7 +17,7 @@ export default function AppointmentBanner({ date, setDate }) {
                 />
             </div>
             <div>
-                <img class="px-5 object-cover  md:h-64" src={chair} alt="" />
+                <img className="px-5 object-cover  md:h-64" src={chair} alt="" />
             </div>
 
         </div>

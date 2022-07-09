@@ -34,6 +34,11 @@ async function connect() {
         await appointmentsCollection.insertOne(appointment);
         res.send(appointment);
     })
+    // appointment get api
+    app.get('/api/bookings', async (req, res) => {
+        const appointments = await appointmentsCollection.find({}).toArray();
+        res.send(appointments);
+    })
 
 }
 connect().catch(console.dir);
