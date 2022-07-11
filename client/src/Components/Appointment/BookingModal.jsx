@@ -9,18 +9,21 @@ export default function BookingModal({ treatment, date, setTreatment }) {
     const [user, loading] = useAuthState(auth);
     // console.log(treatment);
     const { _id, name, slots } = treatment;
+    const formattedDate = format(date, 'PP');
     const handleBooking = e => {
         e.preventDefault();
         const slot = e.target.slot.value;
-        const name = e.target.name.value;
-        const email = e.target.email.value;
+        // const name = e.target.name.value;
+        const name = user.displayName;  
+        const email = user.name;
+        // const email = e.target.email.value;
         const phone = e.target.phone.value;
         const data = {
             name,
             email,
             phone,
             slot,
-            date,
+            formattedDate,
             treatment: _id
         }
         // console.log(data);

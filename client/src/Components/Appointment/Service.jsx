@@ -9,7 +9,8 @@ export default function Service({ service, setTreatment }) {
                 <p>
                     {
                         slots.length > 0 ?
-                            slots.map(slot => <span key={slot} className="badge badge-outline mt-1 ml-1">{slot}</span>)
+                            // slots.map(slot => <span key={slot} className="badge badge-outline mt-1 ml-1">{slot}</span>)
+                            <span className="badge badge-success badge-outline  mt-1 ml-1">{slots.length} Available slots</span>
                             :
                             <span className="badge badge-error badge-outline  mt-1 ml-1">Try another date or contact helpline.</span>
                     }

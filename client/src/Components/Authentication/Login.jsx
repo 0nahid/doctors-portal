@@ -26,6 +26,7 @@ export default function Login() {
     if (gUser || sUser || user || loading) {
         navigate(from, { replace: true });
     }
+
     let signInError;
     (gError || sError) ?
         signInError = <p className='text-red-500'><small>{sError?.message || gError?.message}</small></p> : signInError = ''
