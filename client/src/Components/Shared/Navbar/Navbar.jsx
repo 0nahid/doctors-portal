@@ -1,13 +1,19 @@
 import { signOut } from 'firebase/auth';
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 
 export default function Navbar() {
     const [user] = useAuthState(auth)
-    // console.log(user);
+    const navigate = useNavigate();
     const logout = () => {
         signOut(auth);
+        toast.success(`Thank you, ${user?.displayName} to stay with us!`, {
+            position: "bottom-right",
+            autoClose: 5000,
+        });
+        navigate("/");
     };
     const Navmenu = (
         <li>
@@ -38,7 +44,7 @@ export default function Navbar() {
                 </ul>
             </div>
             <div className="navbar-end">
-                {user ? <button onClick={logout}>Logout</button> : <Link to="/login">Login</Link>}
+                {user ? <button class="btn btn-primary font-bold" onClick={logout}>Logout</button> : <Link to="/login"><button class="btn btn-secondary font-bold">Login</button></Link>}
             </div>
         </div>
     )

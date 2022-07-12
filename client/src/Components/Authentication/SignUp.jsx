@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
@@ -26,10 +27,13 @@ export default function SignUp() {
         signUpError = <p className="text-error">{gError?.message || cError?.message || uError?.message}</p>
     }
     const onSubmit = async (data) => {
-        console.log(data)
+        // console.log(data)
         await createUserWithEmailAndPassword(data.mail, data.password)
         await updateProfile({ displayName: data.displayName })
         navigate('/ ')
+        toast(`Welcome ${data.displayName}! You are now registered. ${data.mail} check your email/spambox to verify your account.`, {
+            icon: '⚠️',
+        });
     };
     if (gUser || cUser) {
         console.log(gUser || cUser);

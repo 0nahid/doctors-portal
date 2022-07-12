@@ -1,20 +1,24 @@
 import axios from 'axios';
 import { format } from "date-fns";
 import { useState } from "react";
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import auth from '../../firebase.init';
 import Loading from '../Shared/Loading/Loading';
 import BookingModal from './BookingModal';
 import Service from './Service';
 export default function AvailableAppointment({ date }) {
     // const [services, setServices] = useState([])
+    const [loading] = useAuthState(auth)
     const [treatment, setTreatment] = useState(null)
     const formattedDate = format(date, 'PP');
     const { data: services, refetch, isLoading } = useQuery(['available', formattedDate], () => axios.get(`http://localhost:5500/api/available?date=${formattedDate}`)
 
     );
-    if (isLoading) {
+    if (isLoading || loading) {
         <Loading />
     }
+    
     return (
         <div>
             <h1 className="text-2xl text-primary text-center mt-5">Available Appointments on {format(date, 'PP')}  </h1>

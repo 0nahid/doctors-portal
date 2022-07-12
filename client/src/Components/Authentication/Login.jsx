@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
+import toast from 'react-hot-toast';
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from "../../firebase.init";
@@ -15,6 +17,7 @@ export default function Login() {
     ] = useSignInWithEmailAndPassword(auth);
     const navigate = useNavigate();
     const location = useLocation();
+
     let from = location.state?.from?.pathname || "/";
     const { register, formState: { errors }, handleSubmit } = useForm();
 
@@ -23,9 +26,15 @@ export default function Login() {
         signInWithEmailAndPassword(data.mail, data.password);
     };
 
-    if (gUser || sUser || user || loading) {
-        navigate(from, { replace: true });
-    }
+    useEffect(()=>{
+        if (gUser || sUser || user) {
+            navigate(from, { replace: true });
+            toast.success(`Welcome Back, ${auth?.currentUser?.displayName}`, {
+                autoClose: 4000,
+            })
+        }
+    },[from, gUser, sUser, user, navigate])
+
 
     let signInError;
     (gError || sError) ?
