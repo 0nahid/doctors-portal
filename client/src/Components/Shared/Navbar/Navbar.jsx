@@ -6,6 +6,7 @@ import auth from "../../../firebase.init";
 
 export default function Navbar() {
     const [user] = useAuthState(auth)
+    // console.log(user);
     const navigate = useNavigate();
     const logout = () => {
         signOut(auth);
@@ -22,6 +23,9 @@ export default function Navbar() {
             <Link to="/review">Review</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/about">About</Link>
+            {
+                user && <Link to="/dashboard">Dashboard</Link>
+            }
 
         </li>
     )
@@ -44,7 +48,31 @@ export default function Navbar() {
                 </ul>
             </div>
             <div className="navbar-end">
-                {user ? <button class="btn btn-primary font-bold" onClick={logout}>Logout</button> : <Link to="/login"><button class="btn btn-secondary font-bold">Login</button></Link>}
+                {
+                    user ? (
+                        <div class="dropdown dropdown-end">
+                            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                                <div class="w-10 rounded-full">
+                                    <img src="https://placeimg.com/80/80/people" alt={user?.displayName} />
+                                </div>
+                            </label>
+                            <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                                <li>
+                                    <Link to="/profile" class="justify-between mb-2">
+                                        Profile
+                                        <span class="badge">New</span>
+                                    </Link>
+                                </li>
+                                {
+                                    user && <label for="dashboard-sidebar" class="btn drawer-button lg:hidden mb-2">Open drawer</label>
+                                }
+                                {user && <button class="btn btn-primary font-bold" onClick={logout}>Logout</button>}
+                            </ul>
+                        </div>
+                    ) : (
+                        <Link to="/login" className="btn btn-ghost">Login</Link>
+                    )
+                }
             </div>
         </div>
     )

@@ -41,7 +41,9 @@ async function connect() {
   })
   // appointment get api
   app.get('/api/bookings', async (req, res) => {
-    const appointments = await appointmentsCollection.find({}).toArray();
+    const email = req.query.email;
+    const query = { email: email }
+    const appointments = await appointmentsCollection.find(query).toArray();
     res.send(appointments);
   })
 
