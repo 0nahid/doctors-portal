@@ -1,26 +1,33 @@
 import axios from 'axios';
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading/Loading';
 import BookingModal from './BookingModal';
 import Service from './Service';
 export default function AvailableAppointment({ date }) {
-    const [services, setServices] = useState([])
+    // const [services, setServices] = useState([])
     const [treatment, setTreatment] = useState(null)
+    const formattedDate = format(date, 'PP');
+    const { data: services, refetch, isLoading } = useQuery(['available', formattedDate], () => axios.get(`http://localhost:5500/api/available?date=${formattedDate}`)
 
-    useEffect(() => {
-        axios(`http://localhost:5500/api/services`)
-            .then(res => {
-                setServices(res.data)
-            })
-    }, [])
+    );
+    if (isLoading) {
+        <Loading />
+    }
     return (
         <div>
             <h1 className="text-2xl text-primary text-center mt-5">Available Appointments on {format(date, 'PP')}  </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center">
-                {services.map(service => <Service key={service._id} service={service} setTreatment={setTreatment} />)}
+                {services?.data?.map(service => <Service key={service._id} service={service} setTreatment={setTreatment} />)}
             </div>
             {
-                treatment && <BookingModal treatment={treatment} date={date} setTreatment={setTreatment} />
+                treatment && <BookingModal 
+                treatment={treatment} 
+                date={date} 
+                setTreatment={setTreatment}
+                refetch={refetch}
+                />
             }
         </div>
     )

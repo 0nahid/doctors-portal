@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
 import auth from '../../firebase.init';
 
-export default function BookingModal({ treatment, date, setTreatment }) {
+export default function BookingModal({ treatment, date, setTreatment, refetch }) {
     const [user, loading] = useAuthState(auth);
     // console.log(treatment);
     const { _id, name, slots } = treatment;
@@ -13,13 +13,14 @@ export default function BookingModal({ treatment, date, setTreatment }) {
     const handleBooking = e => {
         e.preventDefault();
         const slot = e.target.slot.value;
-        // const name = e.target.name.value;
-        const name = user.displayName;
-        const email = user.name;
+        const name = treatment?.name;
+        const userName = user.displayName;
+        const email = user?.email;
         // const email = e.target.email.value;
         const phone = e.target.phone.value;
         const data = {
             name,
+            userName,
             email,
             phone,
             slot,
@@ -27,16 +28,17 @@ export default function BookingModal({ treatment, date, setTreatment }) {
             treatment: _id
         }
         // console.log(data);
-        axios.post('http://localhost:5500/api/bookings', data)
+        axios.post(`http://localhost:5500/api/bookings`, data)
             .then(res => {
-                // console.log(res);
+                console.log(res.data);
                 // if (res.status === 200) {
                 //     setTreatment(null);
                 //     toast.success('Appointment booked successfully');
                 // }
-                if (res.data.success) {
+                if (res.data.success === true) {
                     setTreatment(null);
                     toast.success(`Appointment is set on ${formattedDate} at ${slot} `);
+                    refetch();
                 }
                 else {
                     toast.error(`You already have an appointment on ${res?.data?.booking.formattedDate} at ${res?.data?.booking.slot}`);

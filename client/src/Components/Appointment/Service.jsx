@@ -16,6 +16,7 @@ export default function Service({ service, setTreatment }) {
                     }
                 </p>
                 <p className="uppercase font-semibold">{slots.length} {slots.length > 1 ? 'spaces' : 'space'} avialable</p>
+                <p>{slots[0]}</p>
                 <div className="card-actions justify-center">
                     <label htmlFor="booking-modal"
                         disabled={slots.length === 0}
