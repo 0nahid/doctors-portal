@@ -14,7 +14,7 @@ export default function BookingModal({ treatment, date, setTreatment }) {
         e.preventDefault();
         const slot = e.target.slot.value;
         // const name = e.target.name.value;
-        const name = user.displayName;  
+        const name = user.displayName;
         const email = user.name;
         // const email = e.target.email.value;
         const phone = e.target.phone.value;
@@ -30,9 +30,16 @@ export default function BookingModal({ treatment, date, setTreatment }) {
         axios.post('http://localhost:5500/api/bookings', data)
             .then(res => {
                 // console.log(res);
-                if (res.status === 200) {
+                // if (res.status === 200) {
+                //     setTreatment(null);
+                //     toast.success('Appointment booked successfully');
+                // }
+                if (res.data.success) {
                     setTreatment(null);
-                    toast.success('Appointment booked successfully');
+                    toast.success(`Appointment is set on ${formattedDate} at ${slot} `);
+                }
+                else {
+                    toast.error(`You already have an appointment on ${res?.data?.booking.formattedDate} at ${res?.data?.booking.slot}`);
                 }
             })
     }

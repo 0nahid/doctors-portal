@@ -30,10 +30,15 @@ async function connect() {
 
     // appointment post api
     app.post('/api/bookings', async (req, res) => {
-        const appointment = req.body;
-        await appointmentsCollection.insertOne(appointment);
-        res.send(appointment);
-    })
+        const booking = req.body;
+        const query = { treatment: booking.treatment, formattedDate: booking.formattedDate, name: booking.name }
+        const exists = await appointmentsCollection.findOne(query);
+        if (exists) {
+          return res.send({ success: false, booking: exists })
+        }
+        const result = await appointmentsCollection.insertOne(booking);
+        return res.send({ success: true, result });
+      })
     // appointment get api
     app.get('/api/bookings', async (req, res) => {
         const appointments = await appointmentsCollection.find({}).toArray();
