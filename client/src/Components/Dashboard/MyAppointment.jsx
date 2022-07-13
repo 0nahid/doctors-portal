@@ -16,7 +16,7 @@ export default function MyAppointment() {
                 setLoading(false)
             })
 
-    }, [])
+    }, [user?.email])
     return (
         <>
             {

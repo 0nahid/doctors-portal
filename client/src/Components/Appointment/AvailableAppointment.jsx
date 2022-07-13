@@ -7,6 +7,9 @@ import auth from '../../firebase.init';
 import Loading from '../Shared/Loading/Loading';
 import BookingModal from './BookingModal';
 import Service from './Service';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 export default function AvailableAppointment({ date }) {
     // const [services, setServices] = useState([])
     const [loading] = useAuthState(auth)

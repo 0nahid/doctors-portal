@@ -1,4 +1,3 @@
-
 export default function Service({ service, setTreatment }) {
     const { _id, name, slots } = service;
     // console.log(_id, name);
